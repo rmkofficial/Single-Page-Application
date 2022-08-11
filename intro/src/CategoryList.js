@@ -2,15 +2,13 @@ import React, { Component } from "react";
 import { ListGroup, ListGroupItem } from "reactstrap";
 
 export default class CategoryList extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      categories: [
-        { categoryId: 1, categoryName: "Beverages" },
-        { categoryId: 2, categoryName: "Condiments" },
-      ],
-      currentCategory: "",
-    };
+  state = {
+    categories: [
+      { categoryId: 1, categoryName: "Beverages" },
+      { categoryId: 2, categoryName: "Condiments" },
+    ],
+    currentCategory: "",
+  };
     changeCategory = (category) => {
       this.setState({ currentCategory: category.categoryName });
     };
