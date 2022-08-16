@@ -29,7 +29,7 @@ export default class App extends Component {
 
   render() {
     let productInfo = { title: "ProductList" };
-    let categoryInfo = { title: "CateforyList" };
+    let categoryInfo = { title: "CategoryList" };
     return (
       <div>
         <Container>

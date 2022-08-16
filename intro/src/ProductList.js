@@ -12,7 +12,7 @@ export default class ProductList extends Component {
           <thead>
             <tr>
               <th>#</th>
-              <th>Produc Name</th>
+              <th>Product Name</th>
               <th>Unit Price</th>
               <th>Quantity Per Unit</th>
               <th>Units In Stock</th>
