@@ -4,6 +4,9 @@ import Navi from "./Navi";
 import ProductList from "./ProductList";
 import { Col, Container, Row } from "reactstrap";
 import alertify from "alertifyjs";
+import { Route, Switch } from "react-router-dom";
+import NotFound from "./NotFound";
+import CartList from "./CartList";
 
 export default class App extends Component {
   state = { currentCategory: "", products: [], cart: [] };
@@ -38,13 +41,13 @@ export default class App extends Component {
     }
 
     this.setState({ cart: newCart });
-    alertify.success(product.productName + " added to cart!",1);
+    alertify.success(product.productName + " added to cart!", 1);
   };
 
   removeFromCart = (product) => {
-    let newCart = this.state.cart.filter(c=>c.product.id!==product.id)
-    this.setState({cart:newCart})
-  }
+    let newCart = this.state.cart.filter((c) => c.product.id !== product.id);
+    this.setState({ cart: newCart });
+  };
 
   render() {
     let productInfo = { title: "ProductList" };
@@ -62,13 +65,24 @@ export default class App extends Component {
               ></CategoryList>
             </Col>
             <Col xs="9">
-              <ProductList
-                products={this.state.products}
-                addToCart={this.addToCart}
-                currentCategory={this.state.currentCategory}
-                changeCategory={this.changeCategory}
-                info={productInfo}
-              ></ProductList>
+              <Switch>
+                <Route
+                  exact
+                  path="/"
+                  render={(props) => (
+                    <ProductList
+                    {...props}
+                      products={this.state.products}
+                      addToCart={this.addToCart}
+                      currentCategory={this.state.currentCategory}
+                      changeCategory={this.changeCategory}
+                      info={productInfo}
+                    ></ProductList>
+                  )}
+                ></Route>
+                <Route exact path="/cart" component={CartList}></Route>
+                <Route component={NotFound}></Route>
+              </Switch>
             </Col>
           </Row>
         </Container>
